@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AlbumListAdapter(private val albumList: List<AlbumsItem>) : RecyclerView.Adapter<AlbumListAdapter.AlbumViewHolder>() {
-//    private var albumList = emptyList<Albums>()
+class AlbumListAdapter : RecyclerView.Adapter<AlbumListAdapter.AlbumViewHolder>() {
+    private var albumList : List<AlbumsItem> = emptyList()
 
     class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val idTextView: TextView = itemView.findViewById(R.id.tvId)
@@ -25,10 +25,15 @@ class AlbumListAdapter(private val albumList: List<AlbumsItem>) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        val curentAlbum = albumList[position]
+        val curentAlbum : AlbumsItem = albumList[position]
         holder.idTextView.text = curentAlbum.id.toString()
         holder.idUserTextView.text = curentAlbum.userId.toString()
         holder.titleTextView.text = curentAlbum.title
+    }
+
+    fun setData(albums: Albums){
+        albumList = albums
+        notifyDataSetChanged()
     }
 
 
